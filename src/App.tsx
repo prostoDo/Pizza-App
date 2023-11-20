@@ -40,10 +40,8 @@ function App() {
 
   return (
     <>
-      <Provider  store={store}>
-        <SearchContext.Provider value={{ searchValue, setSearchValue }}>
-          <RouterProvider router={router} />
-        </SearchContext.Provider>
+      <Provider store={store}>
+        <RouterProvider router={router} />
       </Provider>
     </>
   );

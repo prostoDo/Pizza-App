@@ -2,10 +2,12 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import Search from '../components/Search';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { cartSelect } from '../redux/slices/cartSlice';
+
 
 const RootLayout = () => {
 
-  const {items,totalPrice}=useSelector((state)=>state.cart)
+  const {items,totalPrice}=useSelector(cartSelect)
 
   
   return (

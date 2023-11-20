@@ -1,39 +1,50 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-function Sort({ value, onChangeSort }) {
+type SortProps = {
+  value: any;
+  onChangeSort: any;
+};
+
+type SortItem = {
+  name: string;
+  sortProperty: string;
+};
+
+const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
   const [open, setOpen] = React.useState(false);
 
-  const sortRef = React.useRef();
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
-  const sortList = [
+  const sortList: SortItem[] = [
     { name: 'популярности', sortProperty: 'rating' },
     { name: 'цене', sortProperty: 'price' },
     { name: 'алфавиту', sortProperty: 'title' },
+    
   ];
-  function onClickSort(index) {
+  function onClickSort(index:any) {
     onChangeSort(index);
     setOpen(!open);
   }
 
-
   React.useEffect(() => {
-    const onCloseSort = (e) => {
+    const onCloseSort = (e:any) => {
       if (!e.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };
-    document.body.addEventListener('click',onCloseSort)
+    document.body.addEventListener('click', onCloseSort);
 
-    return (()=>{
-      document.body.removeEventListener('click',onCloseSort)
-    })
+    return () => {
+      document.body.removeEventListener('click', onCloseSort);
+    };
   }, []);
 
   const chosenSort = value.name;
 
   return (
     <>
+      R
       <div ref={sortRef} className="sort">
         <div className="sort__label">
           <svg
@@ -66,6 +77,6 @@ function Sort({ value, onChangeSort }) {
       </div>
     </>
   );
-}
+};
 
 export default Sort;

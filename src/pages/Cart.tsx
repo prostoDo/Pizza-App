@@ -3,10 +3,10 @@ import CartItem from '../components/CartItem';
 import { useSelector,useDispatch } from 'react-redux';
 import { clearItems } from '../redux/slices/cartSlice';
 
-const Cart = () => {
+const Cart: React.FC = () => {
 
 
-  const pizzas =useSelector((state)=>state.cart.items)
+  const pizzas =useSelector((state:any)=>state.cart.items)
   const dispatch=useDispatch()
 
   function onClearCart(){
@@ -83,7 +83,7 @@ const Cart = () => {
             </div>
           </div>
           <div className="content__items">
-{pizzas.map((pizza,i)=> (
+{pizzas.map((pizza:any,i:any)=> (
   <CartItem key={i}  {...pizza}/>
 ))}
 

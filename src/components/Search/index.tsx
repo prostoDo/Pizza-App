@@ -1,24 +1,31 @@
 import React from 'react';
+import { setSearchValue } from '../../redux/slices/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './Search.module.scss';
 
-import { SearchContext } from '../../App';
-
 const Search = () => {
-  const searchRef = React.useRef(null);
+  const dispatch = useDispatch();
+
+  const searchValue = useSelector((state: any) => state.filter.searchValue);
+  const searchRef = React.useRef<HTMLInputElement>(null);
 
   function searchClear() {
-    setSearchValue('');
-    searchRef.current.focus();
+    dispatch(setSearchValue(''));
+
+    searchRef.current?.focus();
   }
 
-  const { searchValue, setSearchValue } = React.useContext(SearchContext);
+  function searchData(e: any) {
+    dispatch(setSearchValue(e.target.value));
+  }
+
   return (
     <div className={styles.root}>
       <input
         ref={searchRef}
         value={searchValue}
-        onChange={(e) => setSearchValue(e.target.value)}
+        onChange={(e) => searchData(e)}
         className={styles.input}
         type="text"
         placeholder="Поиск пиццы..."

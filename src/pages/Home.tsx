@@ -7,25 +7,27 @@ import Skeleton from '../components/PizzaBlock/Skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPizzas } from '../redux/slices/pizzaSlice';
 
-import { SearchContext } from '../App';
+// import { SearchContext } from '../App';
 import { setCategoryId, setSort } from '../redux/slices/filterSlice';
 
 const Home = () => {
   const dispatch = useDispatch();
-
-  const category = useSelector((state) => state.filter.categoryId);
-  const sort = useSelector((state) => state.filter.sort);
+  const searchValue = useSelector((state:any) => state.filter.searchValue);
+  const category = useSelector((state:any) => state.filter.categoryId);
+  const sort = useSelector((state:any) => state.filter.sort);
 
   const { pizzas, status } = useSelector((state) => state.pizza);
 
-  const { searchValue } = React.useContext(SearchContext);
+  // const { searchValue } = React.useContext(SearchContext);
 
   const getPizzas = async () => {
     const categoryId = category ? `category=${category}` : '';
     const search = searchValue ? `&search=${searchValue}` : '';
     const sorted = sort.sortProperty;
 
-    dispatch(fetchPizzas({ categoryId, search, sorted }));
+    dispatch(
+      //@ts-ignore
+      fetchPizzas({ categoryId, search, sorted }));
   };
 
   React.useEffect(() => {
@@ -37,14 +39,14 @@ const Home = () => {
       <div className="content">
         <div className="container">
           <div className="content__top">
-            <Categories value={category} onChangeCategory={(id) => dispatch(setCategoryId(id))} />
-            <Sort value={sort} onChangeSort={(i) => dispatch(setSort(i))} />
+            <Categories value={category} onChangeCategory={(id:number) => dispatch(setCategoryId(id))} />
+            <Sort value={sort} onChangeSort={(i:any) => dispatch(setSort(i))} />
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
             {status == 'loading'
               ? [...new Array(10)].map((_, i) => <Skeleton key={i} />)
-              : pizzas.map((pizza, i) => <PizzaBlock key={i} {...pizza} />)}
+              : pizzas.map((pizza:any ) => <PizzaBlock key={pizza.id} {...pizza} />)}
           </div>
         </div>
       </div>

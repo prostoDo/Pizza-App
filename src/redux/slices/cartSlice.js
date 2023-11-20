@@ -40,6 +40,8 @@ state.items=[]
   },
 });
 
+export const  cartSelect =(state)=>state.cart
+
 export const { addItem,removeItem,clearItems } = cartSlice.actions;
 
 export default cartSlice.reducer;

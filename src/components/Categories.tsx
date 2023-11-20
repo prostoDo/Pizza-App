@@ -1,6 +1,13 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-function Categories({ value, onChangeCategory }) {
+
+
+type CategoryProps={
+  value:number,
+  onChangeCategory:(i:number)=>void
+}
+
+const Categories:React.FC <CategoryProps> =({ value, onChangeCategory }) =>{
   const categories = ['Все', 'Мясные', 'Вегетарианские', 'Гриль', 'Острые', 'Закрытые'];
 
   return (

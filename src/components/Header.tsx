@@ -1,12 +1,8 @@
 import React from 'react';
 import Search from './Search';
-import { useSelector } from 'react-redux/es/hooks/useSelector';
 
 
 function Header() {
-
-
-
   return (
     <>
       <div className="header">
