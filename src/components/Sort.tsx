@@ -24,6 +24,8 @@ const Sort: React.FC<SortProps> = ({ value, onChangeSort }) => {
   ];
   function onClickSort(index:any) {
     onChangeSort(index);
+
+    
     setOpen(!open);
   }
 

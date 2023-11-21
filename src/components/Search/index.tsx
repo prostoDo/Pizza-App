@@ -16,7 +16,7 @@ const Search = () => {
     searchRef.current?.focus();
   }
 
-  function searchData(e: any) {
+  function searchData(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(setSearchValue(e.target.value));
   }
 

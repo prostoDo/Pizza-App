@@ -1,16 +1,14 @@
 import React from 'react';
 import CartItem from '../components/CartItem';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { clearItems } from '../redux/slices/cartSlice';
 
 const Cart: React.FC = () => {
+  const pizzas = useSelector((state: any) => state.cart.items);
+  const dispatch = useDispatch();
 
-
-  const pizzas =useSelector((state:any)=>state.cart.items)
-  const dispatch=useDispatch()
-
-  function onClearCart(){
-    dispatch(clearItems())
+  function onClearCart() {
+    dispatch(clearItems());
   }
 
   return (
@@ -79,14 +77,13 @@ const Cart: React.FC = () => {
                   strokeLinejoin="round"></path>
               </svg>
 
-              <span onClick={()=>onClearCart()}>Очистить корзину</span>
+              <span onClick={() => onClearCart()}>Очистить корзину</span>
             </div>
           </div>
           <div className="content__items">
-{pizzas.map((pizza:any,i:any)=> (
-  <CartItem key={i}  {...pizza}/>
-))}
-
+            {pizzas.map((pizza: any, i: any) => (
+              <CartItem key={i} {...pizza} />
+            ))}
           </div>
           <div className="cart__bottom">
             <div className="cart__bottom-details">
